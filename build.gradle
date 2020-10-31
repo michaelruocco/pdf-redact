@@ -120,7 +120,7 @@ def pomConfig = {
     }
 
     scm {
-        url "https://github.com/michaelruocco/${name}"
+        url "https://github.com/michaelruocco/library-template"
     }
 }
 
@@ -147,7 +147,7 @@ bintray {
 
     pkg {
         repo = "maven"
-        name = "${name}"
+        name = "library-template"
         userOrg = "michaelruocco"
         licenses = ["bsd"]
         vcsUrl = "https://github.com/michaelruocco/library-template.git"
