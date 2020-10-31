@@ -8,6 +8,7 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_library-template&metric=sqale_index)](https://sonarcloud.io/dashboard?id=michaelruocco_library-template)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_library-template&metric=coverage)](https://sonarcloud.io/dashboard?id=michaelruocco_library-template)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_library-template&metric=ncloc)](https://sonarcloud.io/dashboard?id=michaelruocco_library-template)
+[![Download](https://api.bintray.com/packages/michaelruocco/maven/library-template/images/download.svg)](https://bintray.com/michaelruocco/maven/library-template/_latestVersion)
 
 ## Overview
 
