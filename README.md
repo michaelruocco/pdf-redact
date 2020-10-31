@@ -69,5 +69,5 @@ following secrets to be set up:
 // runs tests
 // checks for gradle issues
 // checks dependency versions
-./gradlew clean currentVersion spotlessApply build lintGradle dependencyUpdates
+./gradlew clean currentVersion dependencyUpdates lintGradle spotlessApply build  
 ```
