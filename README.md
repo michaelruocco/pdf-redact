@@ -48,9 +48,7 @@ For a number of the above tools to work your Github Actions pipeline will requir
 following secrets to be set up:
 
 *   SONAR_TOKEN for [Sonar Cloud](https://sonarcloud.io/) analysis
-
 *   CODACY_TOKEN for [Codacy](https://www.codacy.com/) analysis
-
 *   BINTRAY_USER and BINTRAY_KEY for releasing snapshots and releases to JFrog and Bintray respectively
 
 ## Useful Commands
