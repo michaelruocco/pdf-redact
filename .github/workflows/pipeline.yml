@@ -62,7 +62,7 @@ jobs:
       - name: Codacy Coverage
         uses: codacy/codacy-coverage-reporter-action@master
         with:
-          project-token: ${{ github.token }}
+          project-token: ${{ secrets.CODACY_TOKEN }}
           coverage-reports: ./build/reports/jacoco/report.xml
 
       - name: Publish snapshot
