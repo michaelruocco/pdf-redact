@@ -90,7 +90,6 @@ jacocoTestReport {
 project.tasks["sonarqube"].dependsOn jacocoTestReport
 sonarqube {
     properties {
-        property "sonar.login", System.getenv("SONARCLOUD_TOKEN")
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.organization", "michaelruocco"
         property "sonar.projectKey", "michaelruocco_${name}"
