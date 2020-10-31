@@ -131,8 +131,8 @@ publishing {
             pom.withXml {
                 def root = asNode()
                 root.appendNode("description", "Template repo to speed up creating new library projects")
-                root.appendNode("name", "${name}")
-                root.appendNode("url", "https://github.com/michaelruocco/${name}")
+                root.appendNode("name", "library-template")
+                root.appendNode("url", "https://github.com/michaelruocco/library-template")
                 root.children().last() + pomConfig
             }
         }
@@ -150,7 +150,7 @@ bintray {
         name = "${name}"
         userOrg = "michaelruocco"
         licenses = ["bsd"]
-        vcsUrl = "https://github.com/michaelruocco/${name}.git"
+        vcsUrl = "https://github.com/michaelruocco/library-template.git"
         version {
             name = project.version
             desc = project.version
