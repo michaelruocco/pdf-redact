@@ -9,6 +9,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_library-template&metric=coverage)](https://sonarcloud.io/dashboard?id=michaelruocco_library-template)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_library-template&metric=ncloc)](https://sonarcloud.io/dashboard?id=michaelruocco_library-template)
 [![Download](https://api.bintray.com/packages/michaelruocco/maven/library-template/images/download.svg)](https://bintray.com/michaelruocco/maven/library-template/_latestVersion)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
 
@@ -69,5 +70,5 @@ following secrets to be set up:
 // runs tests
 // checks for gradle issues
 // checks dependency versions
-./gradlew clean currentVersion dependencyUpdates lintGradle spotlessApply build  
+./gradlew clean currentVersion dependencyUpdates lintGradle spotlessApply build
 ```

@@ -11,14 +11,14 @@ buildscript {
 plugins {
     id "java-library"
     id "jacoco"
-    id "com.diffplug.spotless" version "5.7.0"
-    id "com.github.ben-manes.versions" version "0.33.0"
+    id "com.diffplug.spotless" version "5.8.2"
+    id "com.github.ben-manes.versions" version "0.36.0"
     id "pl.allegro.tech.build.axion-release" version "1.12.1"
     id "org.sonarqube" version "3.0"
     id "maven-publish"
     id "com.jfrog.bintray" version "1.8.5"
-    id "com.jfrog.artifactory" version "4.18.0"
-    id "nebula.lint" version "16.15.6"
+    id "com.jfrog.artifactory" version "4.18.2"
+    id "nebula.lint" version "16.15.9"
 }
 
 group "com.github.michaelruocco"
@@ -59,8 +59,8 @@ dependencies {
     testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testImplementation "org.assertj:assertj-core:3.18.0"
-    testImplementation "org.mockito:mockito-core:3.6.0"
+    testImplementation "org.assertj:assertj-core:3.18.1"
+    testImplementation "org.mockito:mockito-core:3.6.28"
 }
 
 tasks.withType(Test) {
@@ -105,8 +105,8 @@ java {
 def pomConfig = {
     licenses {
         license {
-            name "BSD License"
-            url "http://www.opensource.org/licenses/bsd-license.php"
+            name "MIT License"
+            url "https://opensource.org/licenses/MIT"
             distribution "repo"
         }
     }
