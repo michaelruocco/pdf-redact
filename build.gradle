@@ -16,8 +16,6 @@ plugins {
     id "pl.allegro.tech.build.axion-release" version "1.12.1"
     id "org.sonarqube" version "3.1.1"
     id "maven-publish"
-    id "com.jfrog.bintray" version "1.8.5"
-    id "com.jfrog.artifactory" version "4.20.0"
     id "nebula.lint" version "16.17.0"
 }
 
@@ -101,87 +99,25 @@ java {
     withSourcesJar()
 }
 
-def pomConfig = {
-    licenses {
-        license {
-            name "MIT License"
-            url "https://opensource.org/licenses/MIT"
-            distribution "repo"
-        }
-    }
-
-    developers {
-        developer {
-            id "mruoc"
-            name "Michael Ruocco"
-            email "michael.ruocco@hotmail.com"
-        }
-    }
-
-    scm {
-        url "https://github.com/michaelruocco/library-template"
-    }
-}
-
 publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/michaelruocco/library-template")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
+            }
+        }
+    }
     publications {
-        mavenPublication(MavenPublication) {
+        groupId = project.group
+        artifactId = project.name
+        version = project.version
+        gpr(MavenPublication) {
             from components.java
-            pom.withXml {
-                def root = asNode()
-                root.appendNode("description", "Template repo to speed up creating new library projects")
-                root.appendNode("name", "library-template")
-                root.appendNode("url", "https://github.com/michaelruocco/library-template")
-                root.children().last() + pomConfig
-            }
         }
     }
-}
-
-bintray {
-    user = System.getenv("BINTRAY_USER")
-    key = System.getenv("BINTRAY_KEY")
-    publications = ["mavenPublication"]
-    publish = true
-
-    pkg {
-        repo = "maven"
-        name = "library-template"
-        userOrg = "michaelruocco"
-        licenses = ["bsd"]
-        vcsUrl = "https://github.com/michaelruocco/library-template.git"
-        version {
-            name = project.version
-            desc = project.version
-            released = new Date()
-            gpg {
-                sign = true
-            }
-            mavenCentralSync {
-                sync = true
-            }
-        }
-    }
-}
-
-artifactory {
-    contextUrl = "http://oss.jfrog.org"
-    publish {
-        repository {
-            repoKey = "oss-snapshot-local"
-            username = System.getenv("BINTRAY_USER")
-            password = System.getenv("BINTRAY_KEY")
-        }
-        defaults {
-            publications("mavenPublication")
-            publishArtifacts = true
-            publishPom = true
-        }
-    }
-    resolve {
-        repoKey = "jcenter"
-    }
-    clientConfig.info.setBuildNumber(System.getProperty("build.number"))
 }
 
 spotless {
