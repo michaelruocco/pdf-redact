@@ -111,9 +111,6 @@ publishing {
         }
     }
     publications {
-        groupId = project.group
-        artifactId = project.name
-        version = project.version
         gpr(MavenPublication) {
             from components.java
         }
