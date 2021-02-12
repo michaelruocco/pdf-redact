@@ -100,7 +100,7 @@ java {
 }
 
 publishing {
-    repositories {
+    /*repositories {
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/michaelruocco/library-template")
@@ -109,12 +109,29 @@ publishing {
                 password = System.getenv("GITHUB_TOKEN")
             }
         }
+    }*/
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = toRepoUrl(project.version)
+            credentials {
+                username = System.getenv("OSSRH_USERNAME")
+                password = System.getenv("OSSRH_PASSWORD")
+            }
+        }
     }
     publications {
         gpr(MavenPublication) {
             from components.java
         }
     }
+}
+
+def toRepoUrl(version) {
+    if (version.endsWith('SNAPSHOT')) {
+        return "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+    return "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
 }
 
 spotless {

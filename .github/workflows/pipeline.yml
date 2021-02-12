@@ -68,15 +68,19 @@ jobs:
       - name: Publish snapshot
         if: github.ref != 'refs/heads/master'
         env:
-          GITHUB_USER: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ github.token }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          #GITHUB_USER: ${{ github.actor }}
+          #GITHUB_TOKEN: ${{ github.token }}
         run: ./gradlew publish
 
       - name: Release
         if: github.ref == 'refs/heads/master'
         env:
-          GITHUB_USER: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ github.token }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          #GITHUB_USER: ${{ github.actor }}
+          #GITHUB_TOKEN: ${{ github.token }}
         run: |
           ./gradlew release -Prelease.customUsername=${{ github.actor }} -Prelease.customPassword=${{ github.token }}
           ./gradlew publish
