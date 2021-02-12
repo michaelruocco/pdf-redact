@@ -150,7 +150,11 @@ publishing {
 
 signing {
     def signingKey = System.getenv("OSSRH_PGP_SECRET_KEY")
-    println "key length ${signingKey.length()}"
+    if (signingKey == null) {
+        println "NULL SIGNING KEY"
+    } else {
+        println "key length ${signingKey.length()}"
+    }
     def signingPassword = System.getenv("OSSRH_PGP_SECRET_KEY_PASSWORD")
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign publishing.publications.lib
