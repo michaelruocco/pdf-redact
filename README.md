@@ -60,6 +60,7 @@ following secrets to be set up:
 *   CODACY_TOKEN for [Codacy](https://www.codacy.com/) analysis
 *   OSSRH_USERNAME and OSSRH_PASSWORD for releasing snapshots and releases to Maven Central
 *   OSSRH_PGP_SECRET_KEY and OSSRH_PGP_SECRET_KEY_PASSWORD for signing release artifacts before pushing to maven central
+*   OSSRH_STAGING_PROFILE_ID for automatically closing and dropping relases published to maven central
 
 ## Useful Commands
 
