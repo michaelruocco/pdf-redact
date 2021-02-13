@@ -81,7 +81,6 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           OSSRH_PGP_SECRET_KEY: ${{ secrets.OSSRH_PGP_SECRET_KEY }}
           OSSRH_PGP_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_PGP_SECRET_KEY_PASSWORD }}
-          OSSRH_STAGING_PROFILE_ID: ${{ secrets.OSSRH_STAGING_PROFILE_ID }}
         run: |
           ./gradlew release -Prelease.customUsername=${{ github.actor }} -Prelease.customPassword=${{ github.token }}
           ./gradlew publish closeAndReleaseRepository

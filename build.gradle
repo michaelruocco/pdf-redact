@@ -167,7 +167,6 @@ def toRepoUrl(version) {
 nexusStaging {
     username = System.getenv("OSSRH_USERNAME")
     password = System.getenv("OSSRH_PASSWORD")
-    stagingProfileId = System.getenv("OSSRH_STAGING_PROFILE_ID")
 }
 
 spotless {
