@@ -39,11 +39,11 @@ commonly used components that I like to use on library projects including:
 
 *   [Github actions](https://github.com/actions) for the build pipeline
 
-*   [Artifactory plugin](https://www.jfrog.com/confluence/display/JFROG/Gradle+Artifactory+Plugin) for publishing 
-    snapshots to [JFrog](https://www.jfrog.com/confluence/display/JFROG/Deploying+Snapshots+to+oss.jfrog.org)
-
-*   [Bintray plugin](https://github.com/bintray/gradle-bintray-plugin) for publishing releases to
-    [Bintray JCenter](https://www.google.com/search?q=jcenter&oq=jcenter&aqs=chrome.0.69i59j0l4j69i60l3.1114j0j7&sourceid=chrome&ie=UTF-8)
+*   [Maven publish plugin](https://docs.gradle.org/current/userguide/publishing_maven.html) for publishing snapshots
+    and releases to [Maven Central](https://search.maven.org/)
+    
+*   [Nexus staging plugin](https://github.com/Codearte/gradle-nexus-staging-plugin) to automatically close and drop
+    releases published to [Maven Central](https://search.maven.org/)
 
 *   [Better code hub](https://bettercodehub.com/) for code and architecture analysis
 
@@ -58,7 +58,8 @@ following secrets to be set up:
 
 *   SONAR_TOKEN for [Sonar Cloud](https://sonarcloud.io/) analysis
 *   CODACY_TOKEN for [Codacy](https://www.codacy.com/) analysis
-*   BINTRAY_USER and BINTRAY_KEY for releasing snapshots and releases to JFrog and Bintray respectively
+*   OSSRH_USERNAME and OSSRH_PASSWORD for releasing snapshots and releases to Maven Central
+*   OSSRH_PGP_SECRET_KEY and OSSRH_PGP_SECRET_KEY_PASSWORD for signing release artifacts before pushing to maven central
 
 ## Useful Commands
 
