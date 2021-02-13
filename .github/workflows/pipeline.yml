@@ -72,7 +72,7 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           OSSRH_PGP_SECRET_KEY: ${{ secrets.OSSRH_PGP_SECRET_KEY }}
           OSSRH_PGP_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_PGP_SECRET_KEY_PASSWORD }}
-        run: ./gradlew publish closeAndReleaseRepository
+        run: ./gradlew publish
 
       - name: Release
         if: github.ref == 'refs/heads/master'
