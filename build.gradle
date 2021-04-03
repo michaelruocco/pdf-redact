@@ -14,9 +14,9 @@ plugins {
     id "maven-publish"
     id "signing"
     id "io.codearte.nexus-staging" version "0.30.0"
-    id "com.diffplug.spotless" version "5.11.0"
+    id "com.diffplug.spotless" version "5.11.1"
     id "com.github.ben-manes.versions" version "0.38.0"
-    id "pl.allegro.tech.build.axion-release" version "1.12.1"
+    id "pl.allegro.tech.build.axion-release" version "1.13.1"
     id "org.sonarqube" version "3.1.1"
     id "nebula.lint" version "16.17.1"
 }
@@ -25,7 +25,7 @@ group "com.github.michaelruocco"
 
 ext {
     slf4jVersion = "1.7.30"
-    lombokVersion = "1.18.18"
+    lombokVersion = "1.18.20"
 
     junitVersion = "5.7.1"
 }
@@ -33,7 +33,7 @@ ext {
 scmVersion {
     versionCreator "versionWithBranch"
     tag {
-        prefix = "${name}"
+        prefix = "${name}-"
     }
 }
 project.version = scmVersion.version
