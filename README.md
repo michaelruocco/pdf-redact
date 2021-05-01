@@ -37,6 +37,9 @@ commonly used components that I like to use on library projects including:
 
 *   [Jacoco plugin](https://docs.gradle.org/current/userguide/jacoco_plugin.html) for code coverage reporting
 
+*   [Test Logger plugin](https://plugins.gradle.org/plugin/com.adarshr.test-logger) for pretty printing of test
+    results when running tests from gradle
+    
 *   [Github actions](https://github.com/actions) for the build pipeline
 
 *   [Maven publish plugin](https://docs.gradle.org/current/userguide/publishing_maven.html) for publishing snapshots
