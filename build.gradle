@@ -14,7 +14,7 @@ plugins {
     id "jacoco"
     id "maven-publish"
     id "signing"
-    id "io.codearte.nexus-staging" version "0.30.0"
+    id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
     id "com.diffplug.spotless" version "5.12.5"
     id "com.github.ben-manes.versions" version "0.38.0"
     id "pl.allegro.tech.build.axion-release" version "1.13.2"
@@ -127,17 +127,16 @@ def pomConfig = {
     }
 }
 
-publishing {
+nexusPublishing {
     repositories {
-        maven {
-            name = "OSSRH"
-            url = toRepoUrl(project.version)
-            credentials {
-                username = System.getenv("OSSRH_USERNAME")
-                password = System.getenv("OSSRH_PASSWORD")
-            }
+        sonatype {
+            username = System.getenv("OSSRH_USERNAME")
+            password = System.getenv("OSSRH_PASSWORD")
         }
     }
+}
+
+publishing {
     publications {
         lib(MavenPublication) {
             from components.java
@@ -159,18 +158,6 @@ signing {
     sign publishing.publications.lib
 }
 signLibPublication.enabled = gradle.startParameter.taskNames.contains("publish")
-
-def toRepoUrl(version) {
-    if (version.endsWith('SNAPSHOT')) {
-        return "https://oss.sonatype.org/content/repositories/snapshots/"
-    }
-    return "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-}
-
-nexusStaging {
-    username = System.getenv("OSSRH_USERNAME")
-    password = System.getenv("OSSRH_PASSWORD")
-}
 
 spotless {
     java {
