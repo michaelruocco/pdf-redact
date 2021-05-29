@@ -157,7 +157,7 @@ signing {
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign publishing.publications.lib
 }
-signLibPublication.enabled = gradle.startParameter.taskNames.contains("publish")
+signLibPublication.enabled = gradle.startParameter.taskNames.contains("publishToSonatype")
 
 spotless {
     java {
