@@ -16,7 +16,7 @@ plugins {
     id "signing"
     id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
     id "com.diffplug.spotless" version "5.12.5"
-    id "com.github.ben-manes.versions" version "0.38.0"
+    id "com.github.ben-manes.versions" version "0.39.0"
     id "pl.allegro.tech.build.axion-release" version "1.13.2"
     id "org.sonarqube" version "3.2.0"
     id "com.adarshr.test-logger" version "3.0.0"
@@ -60,7 +60,7 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testImplementation "org.assertj:assertj-core:3.19.0"
-    testImplementation "org.mockito:mockito-core:3.10.0"
+    testImplementation "org.mockito:mockito-core:3.11.0"
 }
 
 javadoc.options.addStringOption('Xdoclint:none', '-quiet')
