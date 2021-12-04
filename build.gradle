@@ -4,12 +4,12 @@ plugins {
     id "maven-publish"
     id "signing"
     id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
-    id "com.diffplug.spotless" version "5.17.0"
+    id "com.diffplug.spotless" version "6.0.1"
     id "com.github.ben-manes.versions" version "0.39.0"
-    id "pl.allegro.tech.build.axion-release" version "1.13.3"
+    id "pl.allegro.tech.build.axion-release" version "1.13.6"
     id "org.sonarqube" version "3.3"
-    id "com.adarshr.test-logger" version "3.0.0"
-    id "nebula.lint" version "17.2.3"
+    id "com.adarshr.test-logger" version "3.1.0"
+    id "nebula.lint" version "17.5.0"
 }
 
 group "com.github.michaelruocco"
@@ -18,7 +18,7 @@ ext {
     slf4jVersion = "1.7.32"
     lombokVersion = "1.18.22"
 
-    junitVersion = "5.8.1"
+    junitVersion = "5.8.2"
 }
 
 scmVersion {
@@ -48,7 +48,7 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testImplementation "org.assertj:assertj-core:3.21.0"
-    testImplementation "org.mockito:mockito-core:4.0.0"
+    testImplementation "org.mockito:mockito-core:4.1.0"
 }
 
 javadoc.options.addStringOption('Xdoclint:none', '-quiet')
