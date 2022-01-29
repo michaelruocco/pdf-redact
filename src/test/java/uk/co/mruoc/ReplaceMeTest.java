@@ -1,13 +1,12 @@
 package uk.co.mruoc;
 
-import org.junit.jupiter.api.Test;
-
-import java.time.Clock;
-import java.time.Instant;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+
+import java.time.Clock;
+import java.time.Instant;
+import org.junit.jupiter.api.Test;
 
 class ReplaceMeTest {
 
@@ -33,5 +32,4 @@ class ReplaceMeTest {
 
         assertThat(time).isEqualTo(expectedTime);
     }
-
 }

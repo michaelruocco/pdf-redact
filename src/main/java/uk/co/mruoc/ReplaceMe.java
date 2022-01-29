@@ -1,10 +1,9 @@
 package uk.co.mruoc;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
 import java.time.Clock;
 import java.time.Instant;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -21,5 +20,4 @@ public class ReplaceMe {
         log.info("in get time");
         return clock.instant();
     }
-
 }
