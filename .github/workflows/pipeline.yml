@@ -40,7 +40,7 @@ jobs:
       - name: Print Current Version
         run: ./gradlew currentVersion
 
-      - name: Check Dependencies
+      - name: Check Dependency Versions
         run: ./gradlew dependencyUpdates
 
       - name: Build
@@ -53,6 +53,9 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: "build/test-results/**/*.xml"
+
+      - name: Check Dependency Vulnerabilities
+        run: ./gradlew sonarqube
 
       - name: Sonar Analysis
         env:
