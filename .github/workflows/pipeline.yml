@@ -55,13 +55,13 @@ jobs:
           files: "build/test-results/**/*.xml"
 
       - name: Check Dependency Vulnerabilities
-        run: ./gradlew sonarqube
+        run: ./gradlew dependencyCheckAnalyze
 
       - name: Sonar Analysis
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew sonarqube
+        run: ./gradlew sonar
 
       - name: Codecov Coverage
         uses: codecov/codecov-action@v1
