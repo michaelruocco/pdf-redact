@@ -54,9 +54,6 @@ jobs:
         with:
           files: "build/test-results/**/*.xml"
 
-      - name: Check Dependency Vulnerabilities
-        run: ./gradlew dependencyCheckAnalyze
-
       - name: Sonar Analysis
         env:
           GITHUB_TOKEN: ${{ github.token }}

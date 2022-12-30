@@ -79,7 +79,7 @@ jacocoTestReport {
 }
 
 dependencyCheck {
-    formats=["JSON","HTML"]
+    formats=["HTML"]
 }
 
 project.tasks["sonar"].dependsOn jacocoTestReport
@@ -89,8 +89,6 @@ sonarqube {
         property "sonar.organization", "michaelruocco"
         property "sonar.projectKey", "michaelruocco_${name}"
         property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/report.xml"
-        property "sonar.dependencyCheck.jsonReportPath", "${buildDir}/reports/dependency-check-report.json"
-        property "sonar.dependencyCheck.htmlReportPath", "${buildDir}/reports/dependency-check-report.html"
     }
 }
 
