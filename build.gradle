@@ -82,7 +82,7 @@ dependencyCheck {
     formats=["JSON","HTML"]
 }
 
-project.tasks["sonarqube"].dependsOn jacocoTestReport
+project.tasks["sonar"].dependsOn jacocoTestReport
 sonarqube {
     properties {
         property "sonar.host.url", "https://sonarcloud.io"
