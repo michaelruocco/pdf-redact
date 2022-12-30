@@ -40,7 +40,7 @@ jobs:
       - name: Print Current Version
         run: ./gradlew currentVersion
 
-      - name: Check Dependencies
+      - name: Check Dependency Versions
         run: ./gradlew dependencyUpdates
 
       - name: Build
@@ -58,7 +58,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew sonarqube
+        run: ./gradlew sonar
 
       - name: Codecov Coverage
         uses: codecov/codecov-action@v1

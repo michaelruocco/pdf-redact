@@ -55,6 +55,9 @@ commonly used components that I like to use on library projects including:
 *   [Sonar Cloud](https://sonarcloud.io/) for static code analysis 
 
 *   [Codacy](https://www.codacy.com/) for additional static code and coverage analysis
+ 
+*   [Dependency Check](https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/) checks dependencies for
+    vulnerabilities
 
 For a number of the above tools to work your Github Actions pipeline will require the
 following secrets to be set up:
@@ -69,10 +72,11 @@ following secrets to be set up:
 ```gradle
 // cleans build directories
 // prints currentVersion
+// checks dependency versions
+// checks for gradle issues
 // formats code
 // builds code
 // runs tests
-// checks for gradle issues
-// checks dependency versions
-./gradlew clean currentVersion dependencyUpdates lintGradle spotlessApply build
+// checks dependencies for vulnerabilities
+./gradlew clean currentVersion dependencyUpdates lintGradle spotlessApply build dependencyCheckAnalyze
 ```
