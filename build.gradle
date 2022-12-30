@@ -88,9 +88,9 @@ sonarqube {
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.organization", "michaelruocco"
         property "sonar.projectKey", "michaelruocco_${name}"
-        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/report.xml"
-        property "sonar.dependencyCheck.jsonReportPath", "build/reports/dependency-check-report.json"
-        property "sonar.dependencyCheck.htmlReportPath", "build/reports/dependency-check-report.html"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/report.xml"
+        property "sonar.dependencyCheck.jsonReportPath", "${buildDir}/reports/dependency-check-report.json"
+        property "sonar.dependencyCheck.htmlReportPath", "${buildDir}/reports/dependency-check-report.html"
     }
 }
 
