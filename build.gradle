@@ -6,19 +6,19 @@ plugins {
     id "io.github.gradle-nexus.publish-plugin" version "2.0.0"
     id "com.diffplug.spotless" version "6.25.0"
     id "com.github.ben-manes.versions" version "0.51.0"
-    id "pl.allegro.tech.build.axion-release" version "1.18.5"
-    id "org.sonarqube" version "5.1.0.4882"
+    id "pl.allegro.tech.build.axion-release" version "1.18.16"
+    id "org.sonarqube" version "6.0.1.5171"
     id "com.adarshr.test-logger" version "4.0.0"
-    id "nebula.lint" version "19.0.3"
+    id "nebula.lint" version "20.3.0"
 }
 
 group "com.github.michaelruocco"
 
 ext {
     slf4jVersion = "2.0.16"
-    lombokVersion = "1.18.34"
+    lombokVersion = "1.18.36"
 
-    junitVersion = "5.11.0"
+    junitVersion = "5.11.3"
 }
 
 scmVersion {
@@ -48,7 +48,7 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testImplementation "org.assertj:assertj-core:3.26.3"
-    testImplementation "org.mockito:mockito-core:5.12.0"
+    testImplementation "org.mockito:mockito-core:5.14.2"
 }
 
 javadoc.options.addStringOption('Xdoclint:none', '-quiet')
@@ -64,7 +64,7 @@ testlogger {
 }
 
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.12"
 }
 
 jacocoTestReport {
@@ -149,7 +149,7 @@ signLibPublication.enabled = gradle.startParameter.taskNames.contains("publishTo
 
 spotless {
     java {
-        palantirJavaFormat("2.38.0")
+        palantirJavaFormat("2.50.0")
     }
 }
 
