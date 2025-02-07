@@ -17,6 +17,7 @@ group "com.github.michaelruocco"
 ext {
     slf4jVersion = "2.0.16"
     lombokVersion = "1.18.36"
+    awsSdkVersion = "2.30.15"
 
     junitVersion = "5.11.4"
 }
@@ -43,9 +44,11 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
     implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
     implementation "com.itextpdf:cleanup:5.0.0"
-    implementation "software.amazon.awssdk:textract:2.30.13"
-    implementation "software.amazon.awssdk:comprehend:2.30.13"
+    implementation "software.amazon.awssdk:textract:${awsSdkVersion}"
+    implementation "software.amazon.awssdk:comprehend:${awsSdkVersion}"
+    implementation "commons-io:commons-io:2.18.0"
 
     testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
