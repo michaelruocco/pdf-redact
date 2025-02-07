@@ -83,6 +83,37 @@ public class PdfRedacter {
         }
     }
 
+    private Collection<PiiEntityText> detectEntities(String text) {
+        var start = Instant.now();
+        try {
+            var request = DetectPiiEntitiesRequest.builder()
+                    .text(text)
+                    .languageCode(piiEntitiesLanguageCode)
+                    .build();
+            var result = comprehendClient.detectPiiEntities(request);
+            return result.entities().stream()
+                    .map(entity -> new PiiEntityText(entity, toText(entity, text)))
+                    .filter(shouldRedact)
+                    .toList();
+        } finally {
+            var duration = Duration.between(start, Instant.now());
+            log.info("detect entities took {}", duration);
+        }
+    }
+
+    private void redact(File inputFile, File redactedFile, Collection<PiiEntityText> entities) {
+        var strategy = buildStrategy(entities);
+        var start = Instant.now();
+        try (var pdf = new PdfDocument(new PdfReader(inputFile.getAbsolutePath()), new PdfWriter(redactedFile))) {
+            PdfCleaner.autoSweepCleanUp(pdf, strategy);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        } finally {
+            var duration = Duration.between(start, Instant.now());
+            log.info("redaction took {} redacted file at {}", duration, redactedFile.getAbsolutePath());
+        }
+    }
+
     private static Collection<String> splitPagesToDocuments(File file) {
         var start = Instant.now();
         try {
@@ -103,24 +134,6 @@ public class PdfRedacter {
         } finally {
             var duration = Duration.between(start, Instant.now());
             log.info("split pages took {}", duration);
-        }
-    }
-
-    private Collection<PiiEntityText> detectEntities(String text) {
-        var start = Instant.now();
-        try {
-            var request = DetectPiiEntitiesRequest.builder()
-                    .text(text)
-                    .languageCode(piiEntitiesLanguageCode)
-                    .build();
-            var result = comprehendClient.detectPiiEntities(request);
-            return result.entities().stream()
-                    .map(entity -> new PiiEntityText(entity, toText(entity, text)))
-                    .filter(shouldRedact)
-                    .toList();
-        } finally {
-            var duration = Duration.between(start, Instant.now());
-            log.info("detect entities took {}", duration);
         }
     }
 
@@ -148,18 +161,5 @@ public class PdfRedacter {
             escaped.append(c);
         }
         return escaped.toString();
-    }
-
-    private void redact(File inputFile, File redactedFile, Collection<PiiEntityText> entities) {
-        var strategy = buildStrategy(entities);
-        var start = Instant.now();
-        try (var pdf = new PdfDocument(new PdfReader(inputFile.getAbsolutePath()), new PdfWriter(redactedFile))) {
-            PdfCleaner.autoSweepCleanUp(pdf, strategy);
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        } finally {
-            var duration = Duration.between(start, Instant.now());
-            log.info("redaction took {} redacted file at {}", duration, redactedFile.getAbsolutePath());
-        }
     }
 }
