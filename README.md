@@ -1,70 +1,22 @@
-# Library Template
-
-[![Build](https://github.com/michaelruocco/pdf-redact/workflows/pipeline/badge.svg)](https://github.com/michaelruocco/pdf-redact/actions)
-[![codecov](https://codecov.io/gh/michaelruocco/pdf-redact/branch/master/graph/badge.svg?token=FWDNP534O7)](https://codecov.io/gh/michaelruocco/pdf-redact)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/272889cf707b4dcb90bf451392530794)](https://www.codacy.com/gh/michaelruocco/pdf-redact/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=michaelruocco/pdf-redact&amp;utm_campaign=Badge_Grade)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_pdf-redact&metric=alert_status)](https://sonarcloud.io/dashboard?id=michaelruocco_pdf-redact)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_pdf-redact&metric=sqale_index)](https://sonarcloud.io/dashboard?id=michaelruocco_pdf-redact)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_pdf-redact&metric=coverage)](https://sonarcloud.io/dashboard?id=michaelruocco_pdf-redact)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_pdf-redact&metric=ncloc)](https://sonarcloud.io/dashboard?id=michaelruocco_pdf-redact)
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.michaelruocco/pdf-redact.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.michaelruocco%22%20AND%20a:%22pdf-redact%22)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# PDF Refact POC
 
 ## Overview
 
-This is a template project for creating library projects more quickly. It does not include test
-fixtures or integration tests as these are not always required, but attempts to give the other
-commonly used components that I like to use on library projects including:
+This repo contains some POC code to redact PII information found within PDF documents.
 
-*   [Lombok](https://projectlombok.org/) for boilerplate code generation
+In order to run the code you will need to configure environment variables to give
+access to AWS Textract and AWS Comprehend with an AWS account, you can do this by
+setting the following environment variables:
 
-*   [AssertJ](https://joel-costigliola.github.io/assertj/) for fluent and readable assertions
+```bash
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+```
 
-*   [SLF4J](http://www.slf4j.org/) for abstracted and pluggable logging
-
-*   [JUnit5](https://junit.org/junit5/) for unit testing
-
-*   [Mockito](https://site.mockito.org/) for mocking
-
-*   [Axion release plugin](https://github.com/allegro/axion-release-plugin) for version management
-
-*   [Spotless plugin](https://github.com/diffplug/spotless/tree/main/plugin-gradle) for code formatting
-
-*   [Nebula plugin](https://github.com/nebula-plugins/gradle-lint-plugin) for gradle linting
-
-*   [Versions plugin](https://github.com/ben-manes/gradle-versions-plugin) for monitoring dependency versions
-
-*   [Jacoco plugin](https://docs.gradle.org/current/userguide/jacoco_plugin.html) for code coverage reporting
-
-*   [Test Logger plugin](https://plugins.gradle.org/plugin/com.adarshr.test-logger) for pretty printing of test
-    results when running tests from gradle
-    
-*   [Github actions](https://github.com/actions) for the build pipeline
-
-*   [Maven publish plugin](https://docs.gradle.org/current/userguide/publishing_maven.html) for publishing snapshots
-    and releases to [Maven Central](https://search.maven.org/)
-    
-*   [Nexus staging plugin](https://github.com/Codearte/gradle-nexus-staging-plugin) to automatically close and drop
-    releases published to [Maven Central](https://search.maven.org/)
-
-*   [Better code hub](https://bettercodehub.com/) for code and architecture analysis
-
-*   [Codecov](https://codecov.io/) for code coverage analysis
-
-*   [Sonar Cloud](https://sonarcloud.io/) for static code analysis 
-
-*   [Codacy](https://www.codacy.com/) for additional static code and coverage analysis
- 
-*   [Dependency Check](https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/) checks dependencies for
-    vulnerabilities
-
-For a number of the above tools to work your Github Actions pipeline will require the
-following secrets to be set up:
-
-*   SONAR_TOKEN for [Sonar Cloud](https://sonarcloud.io/) analysis
-*   CODACY_TOKEN for [Codacy](https://www.codacy.com/) analysis
-*   OSSRH_USERNAME and OSSRH_PASSWORD for releasing snapshots and releases to Maven Central
-*   OSSRH_PGP_SECRET_KEY and OSSRH_PGP_SECRET_KEY_PASSWORD for signing release artifacts before pushing to maven central
+Once those environment variables are configured, you can run the example
+by running the class `uk.co.mruoc.Main`. Once the code has completed a
+redacted copy of the input file found at `input/example.pdf` will be produced
+at `redacted/example.pdf`.
 
 ## Useful Commands
 
@@ -76,5 +28,5 @@ following secrets to be set up:
 // builds code
 // runs tests
 // checks dependencies for vulnerabilities
-./gradlew clean dependencyUpdates lintGradle spotlessApply build
+./gradlew clean dependencyUpdates criticalLintGradle spotlessApply build
 ```

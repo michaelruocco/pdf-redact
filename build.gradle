@@ -6,20 +6,25 @@ plugins {
     id "io.github.gradle-nexus.publish-plugin" version "2.0.0"
     id "com.diffplug.spotless" version "7.0.2"
     id "com.github.ben-manes.versions" version "0.52.0"
-    id "pl.allegro.tech.build.axion-release" version "1.18.16"
+    id "pl.allegro.tech.build.axion-release" version "1.18.17"
     id "org.sonarqube" version "6.0.1.5171"
     id "com.adarshr.test-logger" version "4.0.0"
     id "nebula.lint" version "20.5.6"
+    id "application"
 }
 
 group "com.github.michaelruocco"
 
 ext {
-    slf4jVersion = "2.0.16"
+    slf4jVersion = "2.0.17"
     lombokVersion = "1.18.36"
-    awsSdkVersion = "2.30.15"
+    awsSdkVersion = "2.30.35"
 
     junitVersion = "5.11.4"
+}
+
+application {
+    mainClassName = "uk.co.mruoc.Main"
 }
 
 scmVersion {
@@ -45,16 +50,10 @@ dependencies {
 
     implementation "org.slf4j:slf4j-api:${slf4jVersion}"
     implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
-    implementation "com.itextpdf:cleanup:5.0.0"
+    implementation "com.itextpdf:cleanup:5.0.1"
     implementation "software.amazon.awssdk:textract:${awsSdkVersion}"
     implementation "software.amazon.awssdk:comprehend:${awsSdkVersion}"
     implementation "commons-io:commons-io:2.18.0"
-
-    testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testImplementation "org.assertj:assertj-core:3.27.3"
-    testImplementation "org.mockito:mockito-core:5.15.2"
 }
 
 javadoc.options.addStringOption('Xdoclint:none', '-quiet')
