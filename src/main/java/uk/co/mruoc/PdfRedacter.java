@@ -44,6 +44,7 @@ public class PdfRedacter {
             var pages = splitPagesToDocuments(input);
             var pagesWithText = detectText(pages);
             var pagesWithEntities = detectEntities(pagesWithText);
+            pagesWithEntities.forEach(Page::debug);
             redact(input, redacted, pagesWithEntities);
         } finally {
             var duration = Duration.between(start, Instant.now());
