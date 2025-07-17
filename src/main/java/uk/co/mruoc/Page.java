@@ -5,14 +5,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.With;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.services.textract.model.Block;
 import software.amazon.awssdk.services.textract.model.BlockType;
+import software.amazon.awssdk.services.textract.model.TextType;
 
 @RequiredArgsConstructor
 @Getter
@@ -39,15 +38,16 @@ public class Page {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public Collection<Block> findWordBlocksByText(String text) {
-        return blocks.stream()
-                .filter(new BlockPredicate(text))
+    public Collection<Block> getAllHandWrittenBlocks() {
+        return blocks.stream().filter(new HandWrittenBlockPredicate()).toList();
+    }
 
-                .toList();
+    public Collection<Block> findBlocksByText(String text) {
+        return blocks.stream().filter(new BlockContainsTextPredicate(text)).toList();
     }
 
     @RequiredArgsConstructor
-    private static class BlockPredicate implements Predicate<Block> {
+    private static class BlockContainsTextPredicate implements Predicate<Block> {
 
         private final String text;
 
@@ -61,6 +61,15 @@ public class Page {
                 return block.text().contains(text);
             }
             return false;
+        }
+    }
+
+    @RequiredArgsConstructor
+    private static class HandWrittenBlockPredicate implements Predicate<Block> {
+
+        @Override
+        public boolean test(Block block) {
+            return block.textType() == TextType.HANDWRITING;
         }
     }
 
